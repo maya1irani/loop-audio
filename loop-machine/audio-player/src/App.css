@@ -1,6 +1,6 @@
 .App {
-  text-align: left;
-  background:blanchedalmond;
+  text-align: center;
+  background:lightsteelblue;
 }
 
 .App-logo {
@@ -35,6 +35,12 @@ ul {
 }
 li{
   list-style-type: none;
+}
+
+.seek{
+  text-align: center;
+  width: 1;
+  font-family: cursive;
 }
 
 @keyframes App-logo-spin {
