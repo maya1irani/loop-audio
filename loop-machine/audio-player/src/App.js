@@ -1,7 +1,8 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import AudioButtons from "./components/audioButtons";
-import AudioPlayers from "./components/audioPlayers";
+import AudioPlayers from "./components/audioPlayers/audioPlayers";
+import Slider from "./components/slider";
 import Sound1 from "../src/audio/_tambourine_shake_higher.mp3";
 import Sound2 from "../src/audio/B VOC.mp3";
 import Sound3 from "../src/audio/DRUMS.mp3";
@@ -16,6 +17,11 @@ function App() {
   const [isPlay, setIsPlay] = useState(false);
   let [seek, setSeek] = useState(0.0);
   let [isLoop, setIsLoop] = useState(false);
+  const [precentage, setPrecentage] = useState(0);
+  //meant to handle change on seeking - not working
+  const onChange = (e) => {
+    setPrecentage(e.target.value);
+  };
 
   //channel object
   const Channel = (name, sound, color) => {
@@ -49,22 +55,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <div className="seek">
-          <label>
-            Cursor:
-            <span>
-              <input //cursor - infrastructure for cursur
-                type="range"
-                min="0"
-                max={channels[0].sound.length}
-                // max={this.state.duration ? this.state.duration.toFixed(2) : 0}
-                step=".01"
-                //value={seek}
-                //  onChange={SeekingChange}
-              />
-            </span>
-          </label>
-        </div>
+        <Slider precentage={precentage} seek={seek} onChange={onChange} />
         <ul>{listChannels}</ul>
 
         <AudioButtons //Main buttons bar
